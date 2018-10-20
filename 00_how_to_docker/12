@@ -1,0 +1,5 @@
+docker pull mysql:5.6
+docker run -d --name spawning-pool --restart=on-failure:5 -e MYSQL_ROOT_PASSWORD=Kerrigan -e MYSQL_DATABASE=zerglings -v hatchery:/var/lib/mysql mysql:5.6
+
+# to check 
+# docker run -it --link spawning-pool:mysql --rm mysql sh -c 'exec mysql -h"$MYSQL_PORT_3306_TCP_ADDR" -P"$MYSQL_PORT_3306_TCP_PORT" -uroot -p"$MYSQL_ENV_MYSQL_ROOT_PASSWORD"'
