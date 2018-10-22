@@ -1,15 +1,16 @@
 FROM alpine
 
-MAINTAINER eaptekar <eaptekar@student.unit.ua>
+RUN apk --no-cache add \
+	shadow \
+	zsh \
+	&& chsh -s /bin/zsh \
+	&& apk add gcc libc-dev make binutils gdb vim git
 
-RUN apk update && \
-	apk add busybox-extras
 
-ENTRYPOINT telnet mtrek.com 1701
+ENV SHELL /usr/bin/zsh
+
+WORKDIR /root
+ENTRYPOINT /bin/zsh
 
 # docker build -t bonus02 .
 # docker run -it --rm bonus02
-
------------------------------
-
-torbrowser
